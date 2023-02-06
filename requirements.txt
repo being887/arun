@@ -8,4 +8,4 @@ MarkupSafe==2.1.2
 pytube==12.1.2
 Werkzeug==2.2.2
 youtube-dl==2021.12.17
-Python==3.10.9
+Python==3.10.0

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, send_file
 from pytube import YouTube
 
-os.environ['FLASK_ENV'] = 'production'
+
 
 app = Flask(__name__)
 

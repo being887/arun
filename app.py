@@ -4,9 +4,10 @@ from pytube import YouTube
 
 
 app = Flask(__name__)
-
+print("hello1")
 @app.route("/")
 def index():
+    print("hello2")
     return render_template('index.html')
 
 @app.route("/download", methods=["POST"])

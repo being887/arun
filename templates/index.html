@@ -8,7 +8,47 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Downlaod youtube videos using url</h1>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+  }
+
+  h1 {
+    margin-top: 50px;
+    font-size: 36px;
+    color: #333;
+  }
+
+  form {
+    margin-top: 50px;
+    display: inline-block;
+    text-align: left;
+  }
+
+  input[type="text"] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+
+  input[type="submit"] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+    <h1>Download youtube videos using url</h1>
   <form action="/download" method="post">
     <input type="text" name="url" placeholder="Enter YouTube URL">
     <input type="submit" value="Download Video">

@@ -17,7 +17,7 @@ def download():
         yt = YouTube(url)
         video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
         video_filename = video.default_filename
-        video_path = video.download(output_path='/tmp')
+        video_path = video.download(output_path='/Temp')
         response = send_file(video_path)
         response.headers["Content-Disposition"] = "attachment; filename={}".format(video_filename)
         return response

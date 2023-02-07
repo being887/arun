@@ -8,7 +8,7 @@ print("hello1")
 @app.route("/")
 def index():
     print("hello2")
-    return render_template('index.html')
+    return "hello duniiya"
 
 @app.route("/download", methods=["POST"])
 def download():

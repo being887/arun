@@ -20,7 +20,7 @@ def download():
         video.download(output_path='/temp')
         return "video is downloaded successfully"
     except Exception as e:
-        return "An error occurred while downloading the video: {}".format(str(e)) i want that video is downloading it shows on screen
+        return "An error occurred while downloading the video: {}".format(str(e))
 
 if __name__ == "__main__":
    app.run(host="0.0.0.0",port=5000)

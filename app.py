@@ -18,9 +18,10 @@ def download():
         video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
         video_filename = video.default_filename
         video.download()
-        return "video is downloaded successfully"
+        return send_file(video_filename, as_attachment=True)
     except Exception as e:
         return "An error occurred while downloading the video: " + str(e)
+
 
    
 

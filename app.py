@@ -1,26 +1,24 @@
-from flask import Flask, render_template, request, url_for, redirect, send_file, session
+from flask import Flask, render_template, redirect, url_for, request, send_file
 from pytube import YouTube
-from io import BytesIO
+
+
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "654c0fb3968af9d5e6a9b3edcbc7051b"
+print("hello1")
+@app.route("/")
+def index():
+    print("hello2")
+    return render_template("index.html")
 
-@app.route("/", methods = ["GET", "POST"])
-def home():
-    
-    return render_template("home.html")
+@app.route("/download", methods=["POST"])
+def download():
+    url = request.form["url"]
+    yt = YouTube(url)
+    video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
+    video_filename = video.default_filename
+    video.download()
+    return "video is downloaded successfully"
+   
 
-@app.route("/download", methods = ["GET", "POST"])
-def download_video():
-    if request.method == "POST":
-        buffer = BytesIO()
-        url = YouTube(session['link'])
-        itag = request.form.get("itag")
-        video = url.streams.get_by_itag(itag)
-        video.stream_to_buffer(buffer)
-        buffer.seek(0)
-        return send_file(buffer, as_attachment=True, download_name="Video - YT2Video.mp4", mimetype="video/mp4")
-    return redirect(url_for("home"))
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+   app.run(host="0.0.0.0",port=5000)

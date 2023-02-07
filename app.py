@@ -9,18 +9,17 @@ print("hello1")
 def index():
     print("hello2")
     return render_template("index.html")
-
 @app.route("/download", methods=["POST"])
 def download():
-    try:
-        url = request.form["url"]
-        yt = YouTube(url)
-        video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
-        video_filename = video.default_filename
-        file_path = video.download(output_path='/download')
-        return send_file(file_path, as_attachment=True, attachment_filename=video_filename)
-    except Exception as e:
-        return "An error occurred while downloading the video: {}".format(str(e))
+   try:
+       url = request.form["url"]
+       yt = YouTube(url)
+       video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
+       video_filename = video.default_filename
+       video.download()
+       return "Video '{}' downloaded".format(video_filename)
+   except Exception as e:
+      return "An error occurred while downloading the video: {}".format(str(e))
 
 
 

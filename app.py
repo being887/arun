@@ -12,12 +12,15 @@ def index():
 
 @app.route("/download", methods=["POST"])
 def download():
-    url = request.form["url"]
-    yt = YouTube(url)
-    video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
-    video_filename = video.default_filename
-    video.download()
-    return "video is downloaded successfully"
+    try:
+        url = request.form["url"]
+        yt = YouTube(url)
+        video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
+        video_filename = video.default_filename
+        video.download()
+        return "video is downloaded successfully"
+    except Exception as e:
+        return "An error occurred while downloading the video: {}".format(str(e))
    
 
 if __name__ == "__main__":

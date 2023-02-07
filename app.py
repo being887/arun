@@ -17,11 +17,11 @@ def download():
         yt = YouTube(url)
         video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
         video_filename = video.default_filename
-        response = make_response(send_file('/tmp/' + video_filename))
-        response.headers["Content-Disposition"] = "attachment; filename={}".format(video_filename)
-        return response
+        file_path = video.download(output_path='/download')
+        return send_file(file_path, as_attachment=True, attachment_filename=video_filename)
     except Exception as e:
         return "An error occurred while downloading the video: {}".format(str(e))
+
 
 
 if __name__ == "__main__":
